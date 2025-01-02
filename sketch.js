@@ -3,8 +3,9 @@ let canvasSize;
 let animationProgress = []; // Track animation progress for each cell
 
 function setup() {
-  // Calculate canvas size to be square and fit within the window
-  canvasSize = min(windowWidth, windowHeight) * 0.6; // 60% of the smaller dimension
+  // Determine canvas size based on the device
+  const isMobile = windowWidth < 600; // Check for mobile devices
+  canvasSize = min(windowWidth, windowHeight) * (isMobile ? 0.9 : 0.6); // 90% for mobile, 60% for desktop
   createCanvas(canvasSize, canvasSize); // Create a square canvas
   noStroke(); // No border for circles
   textAlign(CENTER, CENTER); // Center text in circles
@@ -95,7 +96,8 @@ function positionSlider() {
 
 function windowResized() {
   // Recalculate canvas size to remain square
-  canvasSize = min(windowWidth, windowHeight) * 0.6; // 60% of the smaller dimension
+  const isMobile = windowWidth < 600; // Check for mobile devices
+  canvasSize = min(windowWidth, windowHeight) * (isMobile ? 0.9 : 0.6); // 90% for mobile, 60% for desktop
   resizeCanvas(canvasSize, canvasSize); // Resize canvas to new square dimensions
   updateSliderSize(); // Update slider size
   positionSlider(); // Reposition the slider
